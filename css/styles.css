@@ -8,6 +8,7 @@
   --orange: #c45a2c;
   --orange-dark: #a84a24;
   --maroon: #8b2e2e;
+  --social-bg: #a93a3a;
   --white: #ffffff;
   --bg-light: #f4f7f9;
   --bg-map: #e8eef3;
@@ -21,6 +22,8 @@
   --font: "Montserrat", "Segoe UI", system-ui, sans-serif;
   --max: 1200px;
   --transition: 0.2s ease;
+  --columns: 3;
+  --flex-gap: 1.5rem;
 }
 
 *,
@@ -289,16 +292,40 @@ ul {
   /** background: #0d0d0d; **/
 }
 
-/* —— Service cards —— */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+/* —— Responsive flex grid (replaces legacy CSS Grid layouts) —— */
+.flex-grid {
+  --columns: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--flex-gap);
 }
 
-.cards-grid-2 {
-  grid-template-columns: repeat(2, 1fr);
+.flex-grid--2 {
+  --columns: 2;
 }
+
+.flex-grid--4 {
+  --columns: 4;
+}
+
+.flex-grid--testimonials {
+  padding-top: 2rem;
+}
+
+.flex-grid > * {
+  flex: 0 1
+    calc(
+      (100% - ((var(--columns) - 1) * var(--flex-gap))) / var(--columns)
+    );
+  max-width: calc(
+    (100% - ((var(--columns) - 1) * var(--flex-gap))) / var(--columns)
+  );
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* —— Service cards —— */
 
 .service-card {
   position: relative;
@@ -455,13 +482,6 @@ ul {
 }
 
 /* —— Testimonials —— */
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem 1.5rem;
-  padding-top: 2rem;
-}
-
 .testimonial-card {
   position: relative;
   background: var(--white);
@@ -536,12 +556,6 @@ ul {
 }
 
 /* —— Gladiators / team —— */
-.gladiators-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-
 .gladiator-card {
   border-radius: var(--radius);
   overflow: hidden;
@@ -554,6 +568,149 @@ ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.gladiator-info-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.gladiator-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.gladiator-card-image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.gladiator-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gladiator-card-body {
+  padding: 1.25rem 1.35rem 1.5rem;
+}
+
+.gladiator-info-card h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.gladiator-info-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* —— Process, info & coverage cards —— */
+.process-card,
+.info-card,
+.coverage-area-card {
+  position: relative;
+  padding-top: 2.25rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1.35rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.process-card:hover,
+.info-card:hover,
+.coverage-area-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.process-card h3,
+.info-card h3,
+.coverage-area-card h3 {
+  margin: 0 30px 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.process-card p,
+.info-card p,
+.coverage-area-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.page-intro-block {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-intro-block p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.page-intro-block p + p {
+  margin-top: 1rem;
+}
+
+.section-support {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-panel {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
+}
+
+.cta-panel p {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.cta-panel .btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.trust-statement {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--navy);
 }
 
 /* —— Page header (inner pages) —— */
@@ -708,44 +865,64 @@ ul {
 }
 
 .footer-col p,
-.footer-col a {
+.footer-col a:not(.social-icon) {
   margin: 0 0 0.35rem;
   font-size: 0.9rem;
   color: var(--text-muted);
   display: block;
 }
 
-.footer-col a:hover {
+.footer-col a:not(.social-icon):hover {
   color: var(--teal);
 }
 
 .social-row {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
   gap: 0.65rem;
   margin-top: 1rem;
 }
 
-.social-icon {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer-col .social-icon {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
   border-radius: 50%;
-  background: var(--teal-light);
-  color: var(--teal);
-  transition: background var(--transition), color var(--transition);
+  background: var(--social-bg);
+  color: var(--white);
+  text-decoration: none;
+  transition: background var(--transition), box-shadow var(--transition);
 }
 
-.social-icon:hover {
-  background: var(--teal);
+.footer-col .social-icon:hover {
+  background: #8f3232;
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(169, 58, 58, 0.35);
+}
+
+.footer-col .social-icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
   color: var(--white);
 }
 
-.social-icon svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
+.footer-col .social-icon svg path {
+  fill: var(--white);
 }
 
 .footer-bar {
@@ -763,13 +940,21 @@ ul {
 }
 
 /* —— Responsive —— */
-@media (max-width: 992px) {
-  .cards-grid,
-  .testimonials-grid,
-  .gladiators-grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 900px) {
+  .flex-grid,
+  .flex-grid--4 {
+    --columns: 2;
   }
+}
 
+@media (max-width: 600px) {
+  .flex-grid,
+  .flex-grid--4 {
+    --columns: 1;
+  }
+}
+
+@media (max-width: 992px) {
   .network-split {
     grid-template-columns: 1fr;
   }
@@ -819,13 +1004,6 @@ ul {
   .main-nav .btn-quote-mobile {
     margin-top: 0.5rem;
     width: 100%;
-  }
-
-  .cards-grid,
-  .cards-grid-2,
-  .testimonials-grid,
-  .gladiators-grid {
-    grid-template-columns: 1fr;
   }
 
   .contact-grid {
