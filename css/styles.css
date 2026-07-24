@@ -766,6 +766,94 @@ ul {
   box-shadow: var(--shadow);
 }
 
+/* —— Terms —— */
+.terms-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.terms-intro {
+  margin: 0 0 2rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.terms-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: terms;
+}
+
+.terms-list > li {
+  position: relative;
+  counter-increment: terms;
+  margin-bottom: 1.75rem;
+  padding: 1.35rem 1.35rem 1.35rem 4rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.terms-list > li::before {
+  content: counter(terms);
+  position: absolute;
+  top: 1.35rem;
+  left: 1.15rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--orange);
+  border-radius: 6px;
+}
+
+.terms-list h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.terms-list p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.terms-list p + p {
+  margin-top: 0.75rem;
+}
+
+.terms-cta {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--bg-light);
+  border-radius: var(--radius);
+}
+
+.terms-cta p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.terms-cta a {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.terms-cta a:hover {
+  text-decoration: underline;
+}
+
 /* —— Contact —— */
 .contact-grid {
   display: grid;

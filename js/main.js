@@ -66,6 +66,7 @@
           <div class="footer-col">
             <h4>Connect</h4>
             <p>You stay. We are on the way.</p>
+            <p><a href="terms.html">Terms and Conditions</a></p>
             <div class="social-row">
               <a href="#" class="social-icon" aria-label="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
